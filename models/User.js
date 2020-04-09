@@ -1,11 +1,11 @@
 class User {
 
-    constructor (name, gender, birth, coutry, email, password, photo, admin) {
+    constructor (name, gender, birth, country, email, password, photo, admin) {
 
         this._name = name;
         this._gender = gender;
         this._birth = birth;
-        this._coutry = coutry;
+        this._country = country;
         this._email = email;
         this._password = password;
         this._photo = photo;
@@ -52,6 +52,21 @@ class User {
 
     set photo(value) {
         this._photo = value;
+    }
+
+    loadFromJSON(json) {
+        for (let name in json) {
+            switch (name) {
+                case '_register':
+                    this[name] = new Date(json[name]);
+                    break;
+            
+                default:
+                    this[name] = json[name];
+                    break;
+            }
+            
+        }
     }
 
 }
